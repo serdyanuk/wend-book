@@ -1,0 +1,75 @@
+body {
+  background: #000;
+  max-width: 1260px;
+  margin: auto;
+  color: aliceblue;
+}
+
+.container,
+.bg,
+.torch-container {
+  width: 1260px;
+  height: 860px;
+}
+
+.bg {
+  background: url("../img/bg.png") no-repeat;
+}
+
+.torch-container {
+  background: url("../img/torch.gif") no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.title {
+  background: url("../img/title.png") no-repeat;
+  width: 537px;
+  height: 155px;
+  margin: auto;
+}
+
+.btn {
+  margin: auto;
+  transition: opacity 0.5s ease;
+  opacity: 0.5;
+  width: 464px;
+  height: 77px;
+}
+
+.btn {
+  background: url("../img/btn.png") no-repeat;
+}
+
+.btn.active {
+  opacity: 1;
+}
+
+.btn.active:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.page,
+.page-1,
+.page-2 {
+  width: 1260px;
+  height: 860px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  transition: background-image 0.5s ease;
+}
+
+.page-1 {
+  background: url("../img/page-1.jpg") no-repeat;
+}
+
+.page-2 {
+  background: url("../img/page-2.jpg") no-repeat;
+}
