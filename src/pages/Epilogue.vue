@@ -3,7 +3,7 @@
     <page-navigator
       :count-pages="countPages"
       :current-page="currentPage"
-      @update:page="handler"
+      @update-page="handler"
     />
   </div>
 </template>
