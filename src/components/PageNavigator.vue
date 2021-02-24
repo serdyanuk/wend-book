@@ -25,9 +25,10 @@ export default {
       required: true
     }
   },
+  emits: ["updatePage"],
   methods: {
     goToPage(page) {
-      this.$emit("update:page", page);
+      this.$emit("updatePage", page);
     }
   }
 };
