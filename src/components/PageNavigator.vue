@@ -1,35 +1,23 @@
 <template>
   <div class="nav-container">
-    <div
-      v-if="currentPage > 1"
-      class="prev"
-      @click="goToPage(currentPage - 1)"
-    ></div>
-    <div
-      v-if="currentPage < countPages"
-      class="next"
-      @click="goToPage(currentPage + 1)"
-    ></div>
+    <div v-if="page > 1" class="prev" @click="loadPage(page - 1)"></div>
+    <div v-if="page < pages" class="next" @click="loadPage(page + 1)"></div>
   </div>
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { computed } from "vue";
+import { LOAD_PAGE } from "@/store/types";
+
 export default {
-  props: {
-    countPages: {
-      type: Number,
-      required: true
-    },
-    currentPage: {
-      type: Number,
-      required: true
-    }
-  },
-  emits: ["updatePage"],
-  methods: {
-    goToPage(page) {
-      this.$emit("updatePage", page);
-    }
+  setup() {
+    const store = useStore();
+    return {
+      page: computed(() => store.state.epilogue.page),
+      pages: computed(() => store.state.epilogue.pages),
+      loadPage: page => store.dispatch(LOAD_PAGE, page)
+    };
   }
 };
 </script>

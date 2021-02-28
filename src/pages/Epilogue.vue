@@ -1,33 +1,21 @@
 <template>
-  <div :class="'page-' + currentPage">
-    <page-navigator
-      :count-pages="countPages"
-      :current-page="currentPage"
-      @update-page="handler"
-    />
+  <div :class="'page-' + page">
+    <page-navigator />
   </div>
 </template>
 
 <script>
 import PageNavigator from "@/components/PageNavigator";
-import util from "@/util";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   components: { PageNavigator },
-  data() {
+  setup() {
+    const store = useStore();
     return {
-      countPages: 2,
-      currentPage: 1
+      page: computed(() => store.state.epilogue.page)
     };
-  },
-  methods: {
-    handler(page) {
-      const src = require("../assets/img/page-" + page + ".jpg");
-      util
-        .loadImage(src)
-        .then(() => (this.currentPage = page))
-        .catch(e => console.error(e.message));
-    }
   }
 };
 </script>
