@@ -24,11 +24,8 @@ const mutations = {
 };
 
 const actions = {
-  [LOAD_PAGE]({ commit, state }, page) {
+  [LOAD_PAGE]({ commit }, page) {
     return new Promise((resolve, reject) => {
-      if (state.epilogue.pageLoadingPending) {
-        return;
-      }
       commit(SET_PAGE_LOADING_PENDING, true);
 
       const src = require("../assets/img/page-" + page + ".jpg");
