@@ -2,6 +2,7 @@ import Start from "@/pages/Start";
 import Epilogue from "@/pages/Epilogue";
 import store from "@/store";
 import { LOAD_PAGE } from "@/store/types";
+import Error404 from "@/pages/Error404";
 
 const routes = [
   {
@@ -18,6 +19,15 @@ const routes = [
         .then(() => next(true))
         .catch(() => next("/404"));
     }
+  },
+  {
+    path: "/404",
+    name: "error404",
+    component: Error404
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: { name: "error404" }
   }
 ];
 
