@@ -3,6 +3,7 @@ import Epilogue from "@/pages/Epilogue";
 import store from "@/store";
 import { LOAD_PAGE } from "@/store/types";
 import Error404 from "@/pages/Error404";
+import progressBar from "@/progressBar";
 
 const routes = [
   {
@@ -13,11 +14,18 @@ const routes = [
     path: "/epilogue/:page?",
     component: Epilogue,
     beforeEnter: (to, from, next) => {
+      const bar = progressBar.start();
       const page = to.params.page ? parseInt(to.params.page) : 1;
       store
         .dispatch(LOAD_PAGE, page)
-        .then(() => next(true))
-        .catch(() => next("/404"));
+        .then(() => {
+          bar.finish();
+          next(true);
+        })
+        .catch(() => {
+          bar.fail();
+          next("/404");
+        });
     }
   },
   {

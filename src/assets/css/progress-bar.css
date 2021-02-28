@@ -1,0 +1,46 @@
+.progress-bar.stop {
+  width: 0;
+  animation-name: none;
+}
+
+.progress-bar.start {
+  width: 0;
+  animation: progressBar 15s linear 1 forwards;
+}
+
+.progress-bar.fail {
+  width: 100%;
+  background: #d30800;
+}
+
+.progress-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  height: 3px;
+  background: #f1cb00;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes progressBar {
+  10% {
+    width: 25%;
+  }
+
+  30% {
+    width: 50%;
+  }
+
+  60% {
+    width: 75%;
+  }
+
+  99% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
+}

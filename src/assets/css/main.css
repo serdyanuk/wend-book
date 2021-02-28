@@ -1,3 +1,5 @@
+@import "progress-bar.css";
+
 body {
   background: #000;
   max-width: 1260px;
