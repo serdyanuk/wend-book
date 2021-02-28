@@ -73,3 +73,29 @@ body {
 .page-2 {
   background: url("../img/page-2.jpg") no-repeat;
 }
+
+.nav-container {
+  display: flex;
+  width: 100%;
+}
+
+.prev,
+.next {
+  height: 79px;
+  width: 80px;
+}
+
+.prev {
+  background: url("../img/prev.png") no-repeat;
+}
+
+.next {
+  margin-left: auto;
+  background: url("../img/next.png") no-repeat;
+}
+
+.prev:hover,
+.next:hover {
+  cursor: pointer;
+  transform: scale(0.99);
+}
