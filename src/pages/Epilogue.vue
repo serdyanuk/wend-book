@@ -10,6 +10,7 @@
 
 <script>
 import PageNavigator from "@/components/PageNavigator";
+import util from "@/util";
 
 export default {
   components: { PageNavigator },
@@ -21,7 +22,11 @@ export default {
   },
   methods: {
     handler(page) {
-      this.currentPage = page;
+      const src = require("../assets/img/page-" + page + ".jpg");
+      util
+        .loadImage(src)
+        .then(() => (this.currentPage = page))
+        .catch(e => console.error(e.message));
     }
   }
 };
