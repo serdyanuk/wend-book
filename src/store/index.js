@@ -25,22 +25,25 @@ const mutations = {
 
 const actions = {
   [LOAD_PAGE]({ commit, state }, page) {
-    if (state.epilogue.pageLoadingPending) {
-      return;
-    }
-    commit(SET_PAGE_LOADING_PENDING, true);
+    return new Promise((resolve, reject) => {
+      if (state.epilogue.pageLoadingPending) {
+        return;
+      }
+      commit(SET_PAGE_LOADING_PENDING, true);
 
-    const src = require("../assets/img/page-" + page + ".jpg");
-    util
-      .loadImage(src)
-      .then(() => {
-        commit(SET_PAGE_LOADING_PENDING, false);
-        commit(SET_EPILOGUE_PAGE, page);
-      })
-      .catch(e => {
-        commit(SET_PAGE_LOADING_PENDING, false);
-        console.error(e.message);
-      });
+      const src = require("../assets/img/page-" + page + ".jpg");
+      util
+        .loadImage(src)
+        .then(() => {
+          commit(SET_PAGE_LOADING_PENDING, false);
+          commit(SET_EPILOGUE_PAGE, page);
+          resolve();
+        })
+        .catch(e => {
+          commit(SET_PAGE_LOADING_PENDING, false);
+          reject(e);
+        });
+    });
   }
 };
 
