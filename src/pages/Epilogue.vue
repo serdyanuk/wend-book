@@ -1,5 +1,5 @@
 <template>
-  <div :class="'page-' + page">
+  <div class="page" :style="'background-image:url(' + bgImage + ')'">
     <div class="nav-container">
       <router-link
         v-if="page > 1"
@@ -44,7 +44,10 @@ export default {
 
     return {
       page: computed(() => store.state.epilogue.page),
-      pages: computed(() => store.state.epilogue.pages)
+      pages: computed(() => store.state.epilogue.pages),
+      bgImage: computed(() =>
+        require("../assets/img/page-" + store.state.epilogue.page + ".jpg")
+      )
     };
   }
 };
