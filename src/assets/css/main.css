@@ -10,6 +10,7 @@ body {
 .container,
 .bg,
 .torch-container {
+  position: relative;
   width: 1260px;
   height: 860px;
 }
@@ -57,14 +58,12 @@ body {
 .page,
 .page-1,
 .page-2 {
+  position: relative;
   width: 1260px;
   height: 860px;
   display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   transition: background-image 0.5s ease;
 }
 
@@ -78,7 +77,7 @@ body {
 
 .nav-container {
   display: flex;
-  width: 100%;
+  padding: 0 20px 0 20px;
 }
 
 .prev,

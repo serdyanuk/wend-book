@@ -20,11 +20,9 @@ export default {
 
 <style scoped>
 .sound-bar {
-  height: 100px;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -90px;
-  margin-right: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 
 .sound-btn {
