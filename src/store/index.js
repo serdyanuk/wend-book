@@ -8,7 +8,7 @@ import {
 
 const state = {
   epilogue: {
-    pages: 2,
+    pages: 26,
     page: 1,
     pageLoadingPending: false
   }
