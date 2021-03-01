@@ -100,3 +100,11 @@ body {
   cursor: pointer;
   transform: scale(0.99);
 }
+
+.pages-status-bar {
+  position: absolute;
+  bottom: 70px;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}

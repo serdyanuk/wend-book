@@ -12,6 +12,7 @@
         class="next"
       ></router-link>
     </div>
+    <div class="pages-status-bar">Страница {{ page }}/{{ pages }}</div>
   </div>
 </template>
 
