@@ -55,9 +55,7 @@ body {
   cursor: pointer;
 }
 
-.page,
-.page-1,
-.page-2 {
+.page {
   position: relative;
   width: 1260px;
   height: 860px;
@@ -65,14 +63,6 @@ body {
   justify-content: center;
   flex-direction: column;
   transition: background-image 0.5s ease;
-}
-
-.page-1 {
-  background: url("../img/page-1.jpg") no-repeat;
-}
-
-.page-2 {
-  background: url("../img/page-2.jpg") no-repeat;
 }
 
 .nav-container {
