@@ -36,7 +36,7 @@ export default {
       .dispatch(LOAD_PAGE, page)
       .then(() => {
         bar.finish();
-        next(vm => vm.setScrollSound(sound));
+        next(vm => vm.setTurningPageSound(sound));
       })
       .catch(() => {
         bar.fail();
@@ -45,7 +45,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    let scrollSound = null;
+    let turningPageSound = null;
 
     onBeforeRouteUpdate((to, from, next) => {
       const bar = progressBar.start();
@@ -54,7 +54,7 @@ export default {
         .dispatch(LOAD_PAGE, page)
         .then(() => {
           bar.finish();
-          playScrollSound();
+          playTurningPageSound();
           next();
         })
         .catch(() => {
@@ -63,8 +63,8 @@ export default {
         });
     });
 
-    const playScrollSound = () => {
-      scrollSound.play();
+    const playTurningPageSound = () => {
+      turningPageSound.play();
     };
 
     return {
@@ -73,8 +73,8 @@ export default {
       bgImage: computed(() =>
         require("../assets/img/page-" + store.state.epilogue.page + ".jpg")
       ),
-      setScrollSound: sound => {
-        scrollSound = sound;
+      setTurningPageSound: sound => {
+        turningPageSound = sound;
       }
     };
   }
