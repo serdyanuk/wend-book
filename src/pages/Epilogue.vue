@@ -22,8 +22,23 @@ import { computed } from "vue";
 import { onBeforeRouteUpdate } from "vue-router";
 import { LOAD_PAGE } from "@/store/types";
 import progressBar from "@/progressBar";
+import store from "@/store";
 
 export default {
+  beforeRouteEnter: (to, from, next) => {
+    const bar = progressBar.start();
+    const page = to.params.page ? parseInt(to.params.page) : 1;
+    store
+      .dispatch(LOAD_PAGE, page)
+      .then(() => {
+        bar.finish();
+        next(true);
+      })
+      .catch(() => {
+        bar.fail();
+        next("/404");
+      });
+  },
   setup() {
     const store = useStore();
 
