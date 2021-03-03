@@ -2,18 +2,26 @@
   <div class="sound-bar">
     <div
       class="sound-btn"
-      :class="{ off: isActive }"
-      @click="isActive = !isActive"
+      :class="{ off: isMuted }"
+      @click="muteSwitcher"
     ></div>
   </div>
 </template>
 
 <script>
+import { Howler } from "howler";
+
 export default {
   data() {
     return {
-      isActive: false
+      isMuted: false
     };
+  },
+  methods: {
+    muteSwitcher() {
+      this.isMuted = !this.isMuted;
+      Howler.mute(this.isMuted);
+    }
   }
 };
 </script>
