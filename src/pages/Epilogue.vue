@@ -23,16 +23,20 @@ import { onBeforeRouteUpdate } from "vue-router";
 import { LOAD_PAGE } from "@/store/types";
 import progressBar from "@/progressBar";
 import store from "@/store";
+import { Howl } from "howler";
 
 export default {
   beforeRouteEnter: (to, from, next) => {
     const bar = progressBar.start();
     const page = to.params.page ? parseInt(to.params.page) : 1;
+    const sound = new Howl({
+      src: [require("../assets/media/turning-page.mp3")]
+    });
     store
       .dispatch(LOAD_PAGE, page)
       .then(() => {
         bar.finish();
-        next(true);
+        next(vm => vm.setScrollSound(sound));
       })
       .catch(() => {
         bar.fail();
@@ -41,6 +45,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    let scrollSound = null;
 
     onBeforeRouteUpdate((to, from, next) => {
       const bar = progressBar.start();
@@ -49,7 +54,8 @@ export default {
         .dispatch(LOAD_PAGE, page)
         .then(() => {
           bar.finish();
-          next(true);
+          playScrollSound();
+          next();
         })
         .catch(() => {
           bar.fail();
@@ -57,12 +63,19 @@ export default {
         });
     });
 
+    const playScrollSound = () => {
+      scrollSound.play();
+    };
+
     return {
       page: computed(() => store.state.epilogue.page),
       pages: computed(() => store.state.epilogue.pages),
       bgImage: computed(() =>
         require("../assets/img/page-" + store.state.epilogue.page + ".jpg")
-      )
+      ),
+      setScrollSound: sound => {
+        scrollSound = sound;
+      }
     };
   }
 };
