@@ -13,14 +13,20 @@
       ></router-link>
     </div>
     <div class="pages-status-bar">
-      <input :value="page + '/' + pages" class="input-pages" />
+      <input
+        :value="page + '/' + pages"
+        class="input-pages"
+        :class="{ error: inputError }"
+        @keyup.enter="inputPage($event)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { computed, ref } from "vue";
 import { onBeforeRouteUpdate } from "vue-router";
 import { LOAD_PAGE } from "@/store/types";
 import progressBar from "@/progressBar";
@@ -47,7 +53,10 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
+
     let turningPageSound = null;
+    const inputError = ref(0);
 
     onBeforeRouteUpdate((to, from, next) => {
       const bar = progressBar.start();
@@ -55,6 +64,7 @@ export default {
       store
         .dispatch(LOAD_PAGE, page)
         .then(() => {
+          inputError.value = false;
           bar.finish();
           playTurningPageSound();
           next();
@@ -69,6 +79,16 @@ export default {
       turningPageSound.play();
     };
 
+    const inputPage = e => {
+      const values = e.target.value.split("/");
+      let page = parseInt(values[0]);
+      if (page > 0 && page < store.state.epilogue.pages) {
+        router.push("/epilogue/" + page);
+      } else {
+        inputError.value = true;
+      }
+    };
+
     return {
       page: computed(() => store.state.epilogue.page),
       pages: computed(() => store.state.epilogue.pages),
@@ -77,7 +97,9 @@ export default {
       ),
       setTurningPageSound: sound => {
         turningPageSound = sound;
-      }
+      },
+      inputPage,
+      inputError
     };
   }
 };

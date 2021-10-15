@@ -9,6 +9,7 @@ const routes = [
   },
   {
     path: "/epilogue/:page?",
+    name: "epilogue",
     component: Epilogue
   },
   {

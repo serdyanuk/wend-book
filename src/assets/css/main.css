@@ -108,3 +108,15 @@ body {
   color: rgb(255, 255, 255);
   height: 20px;
 }
+
+.input-pages.error {
+  border: 1px solid rgb(207, 85, 85);
+}
+
+.input-pages.error:hover {
+  border: 1px solid rgb(207, 85, 85);
+}
+
+.input-pages:focus{
+  outline: none;
+}
