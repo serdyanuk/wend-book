@@ -12,7 +12,9 @@
         class="next"
       ></router-link>
     </div>
-    <div class="pages-status-bar">Страница {{ page }}/{{ pages }}</div>
+    <div class="pages-status-bar">
+      <input :value="page + '/' + pages" class="input-pages" />
+    </div>
   </div>
 </template>
 

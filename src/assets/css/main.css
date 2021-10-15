@@ -98,3 +98,13 @@ body {
   width: 100%;
   text-align: center;
 }
+
+.input-pages {
+  width: 60px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.432);
+  border: 1px solid rgb(165, 162, 125);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  height: 20px;
+}
