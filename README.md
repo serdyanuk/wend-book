@@ -1,7 +1,7 @@
 # wend-book
 # [See project demo](https://serdyanuk.github.io/wend-book/) #
 
-## Project setup
+## Project Setup
 ```
 yarn install
 ```
